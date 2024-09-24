@@ -39,7 +39,7 @@ import org.openjdk.jmh.annotations.State;
 @State(Scope.Benchmark)
 public class ReentrantReadWriteCounterBenchmark {
 
-    private SynchronizedCounter counter = new SynchronizedCounter();
+    private ReentrantReadWriteLockCounter counter = new ReentrantReadWriteLockCounter();
 
     @Benchmark
     @Group("counter")

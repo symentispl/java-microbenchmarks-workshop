@@ -15,7 +15,7 @@ public class UncommonTrap {
         Object trap = null;
         for (int i = 0; i < 400; ++i) {
             for (int j = 0; j < CHUNK_SIZE; ++j) {
-                uncommonTrap(trap);
+                trap = uncommonTrap(trap);
             }
             if (i == 300) {
                 trap = new Object();

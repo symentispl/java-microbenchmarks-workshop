@@ -56,7 +56,6 @@ public class Inlining {
 
     @Benchmark
     public void blank() {
-
         target_blank();
     }
 
@@ -67,7 +66,6 @@ public class Inlining {
 
     @Benchmark
     public void inline() {
-
         target_inline();
     }
 
