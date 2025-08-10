@@ -7,13 +7,13 @@ public class ReentrantReadWriteLockCounter {
     private int counter;
     private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    synchronized void inc() {
+    void inc() {
         lock.writeLock().lock();
         counter++;
         lock.writeLock().unlock();
     }
 
-    synchronized int value() {
+    int value() {
         lock.readLock().lock();
         try {
             return counter;

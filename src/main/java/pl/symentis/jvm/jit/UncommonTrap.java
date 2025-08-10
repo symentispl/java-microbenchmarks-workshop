@@ -5,7 +5,7 @@ public class UncommonTrap {
     private static final int CHUNK_SIZE = 1000;
 
     private static Object uncommonTrap(Object trap) {
-        if (trap != null) {
+        if (trap == null) {
             System.out.println("I am being trapped!");
         }
         return null;

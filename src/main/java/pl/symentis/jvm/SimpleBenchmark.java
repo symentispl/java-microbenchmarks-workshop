@@ -17,9 +17,9 @@ public class SimpleBenchmark {
 
         List<String> arrayList;
 
-        @Setup(Level.Trial)
+        @Setup(Level.Iteration)
         public void setup() {
-            arrayList = new ArrayList<>(arraySize);
+            arrayList = new ArrayList<>(initialArraySize);
         }
     }
 
@@ -30,7 +30,7 @@ public class SimpleBenchmark {
 
         List<String> linkedList;
 
-        @Setup(Level.Trial)
+        @Setup(Level.Iteration)
         public void setup() {
             linkedList = new LinkedList<>();
         }

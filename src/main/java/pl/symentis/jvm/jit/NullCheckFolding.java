@@ -6,7 +6,7 @@ package pl.symentis.jvm.jit;
 public class NullCheckFolding {
 
     public static void assertNotNull(Object obj) {
-        if (obj == null) {
+        if (obj == null) { // collect taken branches
             System.out.println(String.format("%s is null", obj));
         }
     }

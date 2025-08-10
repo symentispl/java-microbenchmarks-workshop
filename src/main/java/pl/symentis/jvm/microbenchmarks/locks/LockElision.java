@@ -25,6 +25,13 @@ public class LockElision {
     }
 
     @Benchmark
+    public void sharedLock() {
+        synchronized (lock) {
+            x++;
+        }
+    }
+
+    @Benchmark
     @Fork(jvmArgsAppend = "-XX:-DoEscapeAnalysis")
     public void noEscapeAnalisysLocked() {
         synchronized (new Object()) {
@@ -36,13 +43,6 @@ public class LockElision {
     @Fork(jvmArgsAppend = "-XX:-EliminateLocks")
     public void noLockElisionLocked() {
         synchronized (new Object()) {
-            x++;
-        }
-    }
-
-    @Benchmark
-    public void sharedLock() {
-        synchronized (lock) {
             x++;
         }
     }
