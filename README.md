@@ -1,23 +1,30 @@
-# run microbenchmarks locally
+# Setup
 
-* install async profiler, https://github.com/async-profiler/async-profiler/releases/tag/v3.0, use binary for your target CPU architecture
-* install hsdis (https://chriswhocodes.com/hsdis/) into your $JAVA_HOME/lib/server/, use binary for your target CPU architecture
-* LINUX ONLY: configure your system with `sysctl kernel.perf_event_paranoid=1` and `sysctl kernel.kptr_restrict=0`
-* install JDK 21
-* run `./mvnw clean package`
+## Prerequisites
 
-# run microbenchmarks with docker
+To work with this project, you need the following tools installed:
 
-Build docker image:
+### Required Tools
 
-    cd src/main/docker
-    docker build . -t microbenchmarks
+1. **Java 24** - The project uses Java 24 features (configured in pom.xml)
+    - Download from [OpenJDK](https://jdk.java.net/24/) or use a distribution like [Amazon Corretto](https://aws.amazon.com/corretto/) or [Adoptium Temurin](https://adoptium.net/temurin/releases)
+    - Verify installation: `java --version`
 
-And run benchmarks with:
+2. **Task** - Task runner used for build automation and benchmark execution
+    - Install from [taskfile.dev](https://taskfile.dev/installation/)
+    - On Linux/macOS: `sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d`
+    - On Windows: `winget install Task.Task`
+    - Verify installation: `task --version`
 
-    ./mvnw clean package
-    docker run --privileged --rm -v $PWD/target:/work microbenchmarks java -jar /work/benchmarks.jar -prof "async:output=flamegraph;dir=/work"
+### Optional Tools
 
-Without docker, you can run benchmarks directly on your machine with:
+- **Maven** - Not required as the project includes Maven Wrapper (`./mvnw`)
+- **async-profiler** - Automatically downloaded by the Task when running `task profile-benchmarks`
 
-    LD_LIBRARY_PATH=/home/jarek/tools/async-profiler/lib/ java -jar target/benchmarks.jar -prof "async:output=flamegraph"
+## Quick Start
+
+1. Clone the repository
+2. Run `task build` to build the project
+3. Run `task run-benchmarks` to execute benchmarks 
+4. LINUX ONLY: configure your system with `sysctl kernel.perf_event_paranoid=1` and `sysctl kernel.kptr_restrict=0`
+5. Run `task profile-benchmark [benchmark class]` to run with profiling (includes flamegraph generation)
