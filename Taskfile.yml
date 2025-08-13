@@ -54,20 +54,14 @@ tasks:
       - "**/target/classes/**"
       - "**/target/test-classes/**"
       - "{{.BENCHMARKS_JAR}}"
-  run-all-benchmarks:
-    desc: "Run JMH benchmarks"
-    deps:
-      - build
-    cmds:
-      - java -jar {{.BENCHMARKS_JAR}} -wi 3 -i 5 -f 1
-  run-benchmark:
-    desc: "Run a specific benchmark (usage: task run-specific-benchmark -- BenchmarkClassName)"
+  run-benchmarks:
+    desc: "Run benchmarks (use '-- [benchmark name]' to run selected benchmarks)"
     deps:
       - build
     cmds:
       - java -jar {{.BENCHMARKS_JAR}} "{{.CLI_ARGS}}" -wi 3 -i 5 -f 1
   profile-benchmarks:
-    desc: "Profile benchmarks using async-profiler"
+    desc: "Profile benchmarks using async-profiler (of JFR under Windows) (use '-- [benchmark name]' to run selected benchmarks)"
     deps:
       - download-async-profiler
       - build

@@ -27,4 +27,4 @@ To work with this project, you need the following tools installed:
 2. Run `task build` to build the project
 3. Run `task run-benchmarks` to execute benchmarks 
 4. LINUX ONLY: configure your system with `sysctl kernel.perf_event_paranoid=1` and `sysctl kernel.kptr_restrict=0`
-5. Run `task profile-benchmark [benchmark class]` to run with profiling (includes flamegraph generation)
+5. Run `task profile-benchmarks` to run with profiling (includes flamegraph generation)
